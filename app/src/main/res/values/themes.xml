@@ -1,9 +1,41 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MoonTvDigital" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.MoonTvDigital" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:colorBackground">@color/color_primary</item>
+        <item name="android:colorPrimaryDark">@color/color_primary</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.MoonTvDigital" parent="Base.Theme.MoonTvDigital" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:width">80dp</item>
+        <item name="android:height">40dp</item>
+        <item name="marginHorizontal">0dp</item>
+        <item name="android:color">@color/color_cta</item>
+    </style>
+
+    <style name="ShapeAppearance.App.4dpCircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Carousel" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="TicketDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>
