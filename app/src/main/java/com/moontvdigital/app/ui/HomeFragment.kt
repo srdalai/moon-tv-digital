@@ -1,4 +1,4 @@
-package com.moontvdigital.app.ui.home
+package com.moontvdigital.app.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +16,6 @@ import com.moontvdigital.app.data.BannerImageResponse
 import com.moontvdigital.app.data.GetHallsResponse
 import com.moontvdigital.app.data.HallData
 import com.moontvdigital.app.databinding.FragmentHomeBinding
-import com.moontvdigital.app.ui.HallDetailsActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +68,8 @@ class HomeFragment : Fragment() {
                     for (bannerItem in bannerImageResponse?.bannerItems!!) {
                         bannerImages.add(bannerItem?.filePath ?: "")
                     }
-                    val carouselAdapter = CarouselAdapter(requireContext(), bannerImageResponse.bannerItems)
+                    val carouselAdapter =
+                        CarouselAdapter(requireContext(), bannerImages)
                     binding.viewPager.adapter = carouselAdapter
                     binding.indicatorTabLayout.setupWithViewPager(binding.viewPager)
                 }
@@ -81,15 +81,17 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private lateinit var hallListCall: Call<GetHallsResponse>
     private fun getHallList() {
         binding.progressIndicator.visibility = View.VISIBLE
         val request = ServiceBuilder.buildService(ApiService::class.java)
-        val call = request.getHallList()
-        call.enqueue(object : Callback<GetHallsResponse> {
+        hallListCall = request.getHallList()
+        hallListCall.enqueue(object : Callback<GetHallsResponse> {
             override fun onResponse(
                 call: Call<GetHallsResponse>,
                 response: Response<GetHallsResponse>
             ) {
+                if (hallListCall.isCanceled) return
                 binding.progressIndicator.visibility = View.GONE
                 val hallsResponse: GetHallsResponse? = response.body()
                 if (hallsResponse?.code.equals("200")) {
@@ -98,6 +100,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<GetHallsResponse>, t: Throwable) {
+                if (hallListCall.isCanceled) return
                 binding.progressIndicator.visibility = View.GONE
                 Log.e(TAG, t.toString())
             }
@@ -105,7 +108,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setHallRecycler(hallList: List<HallData?>) {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val adapter = HallAdapter(hallList, object : HallAdapter.OnItemClickListener {
             override fun onItemClicked(hallData: HallData) {
                 Intent(requireContext(), HallDetailsActivity::class.java).apply {
@@ -121,8 +125,10 @@ class HomeFragment : Fragment() {
         binding.allTheatersRecycler.adapter = adapter
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        hallListCall.cancel()
     }
 }

@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class ShowTimesResponse(
 
-	@field:SerializedName("Message")
+	@field:SerializedName("message")
 	val message: String? = null,
 
-	@field:SerializedName("Data")
+	@field:SerializedName("data")
 	val showTimes: List<ShowTime?>? = null,
 
-	@field:SerializedName("Code")
+	@field:SerializedName("code")
 	val code: String? = null,
 
-	@field:SerializedName("Success")
+	@field:SerializedName("success")
 	val success: String? = null
 )
 

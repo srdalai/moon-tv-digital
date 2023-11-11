@@ -1,5 +1,6 @@
 package com.moontvdigital.app.ui
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
@@ -60,6 +61,11 @@ class HallDetailsActivity : AppCompatActivity() {
 
         binding = ActivityHallDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        /*supportActionBar?.let {
+            it.setTitle("")
+            it.setDisplayHomeAsUpEnabled(true)
+        }*/
 
         hallName = intent.getStringExtra("hall_name")!!
         hallId = intent.getIntExtra("hall_id", 0)
@@ -231,8 +237,9 @@ class HallDetailsActivity : AppCompatActivity() {
     }
 
     private fun showTicketDialog(showTime: ShowTime) {
-        val ticketStubFragment = TicketStubFragment(hallName, curShowDate, showTime, walletBalance)
-        ticketStubFragment.show(supportFragmentManager, TicketStubFragment.TAG)
+        /*val ticketStubFragment = TicketStubFragment(hallName, curShowDate, showTime, walletBalance)
+        ticketStubFragment.show(supportFragmentManager, TicketStubFragment.TAG)*/
+        startActivity(Intent(this, MovieDetailsActivity::class.java))
 
         /*val builder = AlertDialog.Builder(this, R.style.TicketDialog)
         builder.setView(R.layout.fragment_ticket_stub)

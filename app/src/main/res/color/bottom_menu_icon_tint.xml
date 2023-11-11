@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Active item -->
-    <item android:color="@color/color_accent"
+    <item android:color="@color/color_primary"
         android:state_pressed="true" android:state_checked="true"/>
-    <item android:color="@color/color_accent"
+    <item android:color="@color/color_primary"
         android:state_focused="true" android:state_checked="true"/>
-    <item android:color="@color/color_accent"
+    <item android:color="@color/color_primary"
         android:state_hovered="true" android:state_checked="true"/>
-    <item android:color="@color/color_accent"
+    <item android:color="@color/color_primary"
         android:state_checked="true"/>
 
     <!-- Inactive item -->
-    <item android:color="@color/white"
+    <item android:color="@color/primary_text"
         android:state_pressed="true"/>
-    <item android:color="@color/white"
+    <item android:color="@color/primary_text"
         android:state_focused="true"/>
-    <item android:color="@color/white"
+    <item android:color="@color/primary_text"
         android:state_hovered="true"/>
-    <item android:color="@color/white"/>
+    <item android:color="@color/primary_text"/>
 </selector>

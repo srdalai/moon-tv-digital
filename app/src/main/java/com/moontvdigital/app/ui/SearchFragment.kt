@@ -1,4 +1,4 @@
-package com.moontvdigital.app.ui.search
+package com.moontvdigital.app.ui
 
 import android.graphics.Rect
 import android.os.Bundle

@@ -15,7 +15,7 @@
             <solid android:color="@color/white"/>
             <stroke
                 android:width="0.5dp"
-                android:color="@color/card_gray" />
+                android:color="@color/secondary_text" />
             <corners android:radius="4dp" />
         </shape>
     </item>

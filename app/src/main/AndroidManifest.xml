@@ -10,11 +10,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MoonTvDigital"
+        android:theme="@style/Base.Theme.MoonTvDigital.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ui.LoginActivity"
-            android:exported="false" />
+            android:name=".ui.AuthActivity"
+            android:theme="@style/Base.Theme.MoonTvDigital"
+            android:exported="true">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".ui.MovieDetailsActivity"
+            android:exported="true">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
         <activity
             android:name=".ui.HallDetailsActivity"
             android:exported="false"
@@ -22,11 +38,11 @@
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".ui.PlayerActivity"
@@ -36,18 +52,12 @@
             android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
-        <activity
-            android:name=".ui.ContentDetailsActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

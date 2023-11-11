@@ -12,7 +12,7 @@
         android:clickable="true"
         android:clipToPadding="true"
         android:focusable="true"
-        app:cardBackgroundColor="#FFAB00"
+        app:cardBackgroundColor="@color/color_accent"
         app:cardCornerRadius="8dp">
 
         <TextView
@@ -26,7 +26,7 @@
             android:maxLines="3"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_text"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 

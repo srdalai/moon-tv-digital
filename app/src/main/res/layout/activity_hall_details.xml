@@ -28,19 +28,28 @@
             android:id="@+id/carouselFrame"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="12dp"
             app:layout_constraintDimensionRatio="H,16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvHallName">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                app:shapeAppearance="@style/ShapeAppearance.App.Carousel" />
 
         </FrameLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="12dp"
+            android:background="@drawable/default_card_bg"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/carouselFrame" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +64,7 @@
                 android:layout_marginTop="32dp"
                 android:includeFontPadding="false"
                 android:text="Date &amp; Day"
-                android:textColor="#3f3b39"
+                android:textColor="@color/primary_text"
                 android:textSize="22sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -64,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                tools:itemCount="1" />
+                tools:itemCount="1"
+                tools:listitem="@layout/item_date_card_layout" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +83,7 @@
                 android:layout_marginTop="20dp"
                 android:includeFontPadding="false"
                 android:text="Show Start Time"
-                android:textColor="#3f3b39"
+                android:textColor="@color/primary_text"
                 android:textSize="22sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -82,7 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginTop="20dp"
-                tools:itemCount="1" />
+                tools:itemCount="1"
+                tools:listitem="@layout/item_show_time_layout" />
 
             <include
                 android:id="@+id/ticketView"

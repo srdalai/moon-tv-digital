@@ -29,6 +29,9 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     lateinit var binding: ActivityPlayerBinding
+
+    lateinit var videoUrl: String
+
     var player: ExoPlayer? = null
     var selectedResizeMode = 0
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#D0F5BE" />
+            <corners android:radius="@dimen/settings_icon_radius" />
+        </shape>
+    </item>
+    <item
+        android:bottom="@dimen/settings_icon_padding"
+        android:drawable="@drawable/settings_icon_wallet"
+        android:left="@dimen/settings_icon_padding"
+        android:right="@dimen/settings_icon_padding"
+        android:top="@dimen/settings_icon_padding" />
+</layer-list>

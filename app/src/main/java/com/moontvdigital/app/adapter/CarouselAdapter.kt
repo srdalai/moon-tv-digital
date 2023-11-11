@@ -11,7 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.moontvdigital.app.R
 import com.moontvdigital.app.data.BannerItem
 
-class CarouselAdapter(private var mContext: Context, private var bannerItems: List<BannerItem?>) : PagerAdapter() {
+class CarouselAdapter(private var mContext: Context, private var bannerUrls: List<String>) : PagerAdapter() {
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
     }
@@ -21,20 +21,18 @@ class CarouselAdapter(private var mContext: Context, private var bannerItems: Li
             .inflate(R.layout.item_carousel_layout, container, false)
         val imageViewBanner = view.findViewById<ImageView>(R.id.imageViewBanner)
 
-        val bannerItem = bannerItems[position]
+        val bannerUrl = bannerUrls[position]
 
-        if (bannerItem != null) {
-            Glide.with(mContext)
-                .load(bannerItem.filePath)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageViewBanner)
-        }
+        Glide.with(mContext)
+            .load(bannerUrl)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(imageViewBanner)
         container.addView(view)
         return view
     }
 
     override fun getCount(): Int {
-        return bannerItems.size
+        return bannerUrls.size
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {

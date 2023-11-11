@@ -7,7 +7,10 @@ class Util {
 
     companion object {
 
-        const val BASE_URL = "https://film.ofpa.in/getdetails.asmx/"
+        const val BASE_URL = "https://film.ofpa.in/services/GetDetails.asmx/"
+
+        const val COUNTRY_ID_INDIA = "116"
+        const val STATE_ID_ODISHA = "27"
 
         @JvmStatic
         fun dpToPx(ctx: Context, dp: Int): Int {
