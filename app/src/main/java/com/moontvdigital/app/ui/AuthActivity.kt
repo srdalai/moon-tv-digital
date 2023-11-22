@@ -218,7 +218,8 @@ class AuthActivity : AppCompatActivity() {
         Log.d(
             TAG,
             "register => selectedCountryId: $selectedCountryId; selectedStateId: $selectedStateId; selectedDistId: $selectedDistId"
-        )/*binding.progressIndicator.visibility = View.VISIBLE
+        )
+        binding.progressIndicator.visibility = View.VISIBLE
         val service = ServiceBuilder.buildService(ApiService::class.java)
         val call = service.userRegister(selectedCountryId, selectedStateId, selectedDistId, fullName, mobileNum, passCode)
         call.enqueue(object : Callback<AuthResponse> {
@@ -242,7 +243,7 @@ class AuthActivity : AppCompatActivity() {
                 binding.progressIndicator.visibility = View.GONE
                 showSnack("Something went wrong. Try again.")
             }
-        })*/
+        })
     }
 
     private fun callGetCountryListApi() {

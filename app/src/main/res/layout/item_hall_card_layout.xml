@@ -5,29 +5,85 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="152dp"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:clipToPadding="true"
-        android:focusable="true"
-        app:cardBackgroundColor="@color/color_accent"
-        app:cardCornerRadius="8dp">
+        android:clipToPadding="true">
 
-        <TextView
-            android:id="@+id/tvHallName"
-            android:layout_width="150dp"
-            android:layout_height="88dp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:maxLines="3"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:textColor="@color/primary_text"
-            android:textSize="18sp" />
-    </androidx.cardview.widget.CardView>
+        <FrameLayout
+            android:id="@+id/hallPosterFrame"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/hall_image_bg"
+            app:layout_constraintDimensionRatio="H,2:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivHallImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                app:shapeAppearance="@style/ShapeAppearance.App.HallCard" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/hallInfoLinear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/hall_info_bg"
+            android:orientation="vertical"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="4dp"
+            app:layout_constraintEnd_toEndOf="@id/hallPosterFrame"
+            app:layout_constraintStart_toStartOf="@id/hallPosterFrame"
+            app:layout_constraintTop_toBottomOf="@id/hallPosterFrame">
+
+            <TextView
+                android:id="@+id/tvHallName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="MOHINI"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="DIGITAL THEATER"
+                android:textColor="#fdda03"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvHallTiming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Timing: 11:15 / 2:15 / 5:15 / 7:15"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

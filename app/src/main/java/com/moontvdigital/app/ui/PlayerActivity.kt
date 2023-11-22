@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
@@ -34,15 +35,46 @@ class PlayerActivity : AppCompatActivity() {
 
     var player: ExoPlayer? = null
     var selectedResizeMode = 0
+    lateinit var toggleFullscreenButton : ImageButton
 
+    @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toggleFullscreenButton : ImageButton = findViewById(R.id.toggleFullscreenButton)
+        videoUrl = intent.getStringExtra("vide_url").toString()
 
+        toggleFullscreenButton = findViewById(R.id.toggleFullscreenButton)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            setForFullScreen()
+        }
+
+        val btnResizeMode : ImageButton = findViewById(R.id.resize_mode)
+        btnResizeMode.setOnClickListener {
+            showResizeModeDialog()
+        }
+
+        player = ExoPlayer.Builder(this).build()
+        val mediaItem = MediaItem.fromUri(/*"https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8"*/videoUrl)
+        player?.setMediaItem(mediaItem)
+        player?.prepare()
+        player?.play()
+        binding.playerView.player = player
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setTurnScreenOn(true)
+        } else {
+            //TODO
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun setForFullScreen() {
         val windowInsetsController = WindowCompat.getInsetsController(
             window, window.decorView
         )
@@ -74,20 +106,6 @@ class PlayerActivity : AppCompatActivity() {
             }
             view.onApplyWindowInsets(windowInsets)
         }
-
-        val btnResizeMode : ImageButton = findViewById(R.id.resize_mode)
-        btnResizeMode.setOnClickListener {
-            showResizeModeDialog()
-        }
-
-        player = ExoPlayer.Builder(this).build()
-        val mediaItem = MediaItem.fromUri("https://cdn.theoplayer.com/video/big_buck_bunny/big_buck_bunny.m3u8")
-        player?.setMediaItem(mediaItem)
-        player?.prepare()
-        player?.play()
-        binding.playerView.player = player
-
-        setTurnScreenOn(true)
     }
 
     @androidx.media3.common.util.UnstableApi

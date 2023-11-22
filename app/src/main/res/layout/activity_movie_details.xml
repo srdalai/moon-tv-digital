@@ -72,7 +72,7 @@
             android:includeFontPadding="false"
             android:text="Malyagiri"
             android:textColor="@color/primary_text"
-            android:textSize="24sp"
+            android:textSize="@dimen/content_title_font_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/carouselFrame" />
@@ -95,7 +95,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:text="2023"
-                android:textColor="@color/primary_text" />
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/meta_data_font_size" />
 
             <View
                 android:layout_width="4dp"
@@ -111,7 +112,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:text="2h 45m"
-                android:textColor="@color/primary_text" />
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/meta_data_font_size" />
 
             <View
                 android:layout_width="4dp"
@@ -124,10 +126,13 @@
                 android:id="@+id/tvGenres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
+                android:maxLines="1"
                 android:text="Action"
-                android:textColor="@color/primary_text" />
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/meta_data_font_size" />
 
 
         </LinearLayout>
@@ -215,7 +220,7 @@
             android:maxLines="4"
             android:text="Parshu, a happy go lucky guy stay's with his family. His father gets ill and a large sum of money is required for his operation. Failing to pay the amount he decides to climb Malyagiri mountain and collect the vedic leafs."
             android:textColor="@color/primary_text"
-            android:textSize="16sp"
+            android:textSize="@dimen/content_desc_font_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/metaDataIcons" />
@@ -255,18 +260,18 @@
                     android:includeFontPadding="false"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Watch Trailer"
+                    android:text="Watch\nTrailer"
                     android:textColor="@color/primary_text"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/cta_font_size" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/PlayLinear"
+                android:id="@+id/playLinear"
                 android:layout_width="80dp"
-                android:clickable="true"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:background="@drawable/details_cta_bg"
+                android:clickable="true"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingVertical="8dp">
@@ -286,9 +291,9 @@
                     android:includeFontPadding="false"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Start Watching"
+                    android:text="Start\nWatching"
                     android:textColor="@color/primary_text"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/cta_font_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -317,9 +322,9 @@
                     android:includeFontPadding="false"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Book this Movie"
+                    android:text="Book this\nMovie"
                     android:textColor="@color/primary_text"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/cta_font_size" />
             </LinearLayout>
 
         </LinearLayout>
@@ -334,7 +339,7 @@
             android:includeFontPadding="false"
             android:text="Cast"
             android:textColor="@color/primary_text"
-            android:textSize="20sp"
+            android:textSize="@dimen/section_heading_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ctaLinear" />
 

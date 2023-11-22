@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MoonTvDigital.NoActionBar" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Base.Theme.MoonTvDigital.NoActionBar" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/color_primary</item>
@@ -9,7 +9,7 @@
         <item name="android:colorPrimaryDark">@color/default_bg</item>
         <item name="android:statusBarColor">@color/black</item>
     </style>
-    <style name="Base.Theme.MoonTvDigital" parent="Theme.Material3.Dark">
+    <style name="Base.Theme.MoonTvDigital" parent="Theme.Material3.Light">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/color_primary</item>
@@ -28,9 +28,9 @@
         <item name="android:color">@color/color_accent</item>
     </style>
 
-    <style name="ShapeAppearance.App.4dpCircleImageView" parent="">
+    <style name="ShapeAppearance.App.HallCard" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">4dp</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
     <style name="ShapeAppearance.App.Carousel" parent="">

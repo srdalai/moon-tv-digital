@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentFrame"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:background="@drawable/hall_image_bg">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView"
+        android:layout_width="220dp"
+        android:layout_height="124dp"
+        android:layout_margin="1dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/ShapeAppearance.App.HallCard" />
+</FrameLayout>

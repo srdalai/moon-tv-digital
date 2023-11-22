@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.moontvdigital.app.R
 import com.moontvdigital.app.adapter.CarouselAdapter
 import com.moontvdigital.app.adapter.CastAdapter
+import com.moontvdigital.app.adapter.DetailsCarouselAdapter
 import com.moontvdigital.app.api.ApiService
 import com.moontvdigital.app.api.ServiceBuilder
 import com.moontvdigital.app.data.CastItem
@@ -41,13 +43,16 @@ class MovieDetailsActivity : AppCompatActivity() {
         "https://scontent-ccu1-1.cdninstagram.com/v/t51.2885-15/387265536_315305014444045_7149496564671046963_n.webp?stp=dst-jpg_e35_s1080x1080&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDgxMC5zZHIifQ&_nc_ht=scontent-ccu1-1.cdninstagram.com&_nc_cat=101&_nc_ohc=aM3dHezSmcMAX8BHPge&edm=ACWDqb8BAAAA&ccb=7-5&ig_cache_key=MzIxMDQ5NTc0ODA2NDU2NzUzMw%3D%3D.2-ccb7-5&oh=00_AfBWwo5sDtBEK3CdzzPHH0bv2e8WTOdZcg5aSYmY1bWOGA&oe=653F488C&_nc_sid=ee9879";
 
     var isLoggedIn = false
-    lateinit var preferenceManager: PreferenceManager
-    var movieItem: MovieItem? = null
+    private lateinit var preferenceManager: PreferenceManager
+    private lateinit var movieId: String
+    private var movieItem: MovieItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        movieId = intent.getStringExtra("movie_id")!!
 
         preferenceManager = PreferenceManager.getInstance(this)
 
@@ -76,7 +81,14 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.tvMovieDesc.setOnClickListener { showStoryDialog() }
         binding.trailerLinear.setOnClickListener {
-            startActivity(Intent(this, PlayerActivity::class.java))
+            startActivity(Intent(this, PlayerActivity::class.java).apply {
+                putExtra("vide_url", movieItem?.trailerPath)
+            })
+        }
+        binding.playLinear.setOnClickListener {
+            startActivity(Intent(this, PlayerActivity::class.java).apply {
+                putExtra("vide_url", movieItem?.filmPath)
+            })
         }
         binding.rentLinear.setOnClickListener {
             if (isLoggedIn) {
@@ -89,7 +101,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun callMovieDetailsApi() {
         val service = ServiceBuilder.buildService(ApiService::class.java)
-        val detailsCall = service.getFilmDetails("2")
+        val detailsCall = service.getFilmDetails(movieId)
         detailsCall.enqueue(object : Callback<MovieDetailsResponse> {
             override fun onResponse(
                 call: Call<MovieDetailsResponse>,
@@ -144,7 +156,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             bannerUrls.add(it.bannerPath!!)
         }
         val carouselAdapter =
-            CarouselAdapter(this, bannerUrls)
+            DetailsCarouselAdapter(this, bannerUrls)
         binding.viewPager.adapter = carouselAdapter
         binding.indicatorTabLayout.setupWithViewPager(binding.viewPager)
     }
@@ -182,6 +194,14 @@ class MovieDetailsActivity : AppCompatActivity() {
         val dialogBuilder = MaterialAlertDialogBuilder(this)
         dialogBuilder.setView(dialogMovieDescBinding.root)
         dialogBuilder.create().show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            super.onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

@@ -20,19 +20,6 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvCharName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="center_horizontal"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="Lorem"
-            android:textColor="@color/primary_text"
-            android:textSize="13sp" />
-
-        <TextView
             android:id="@+id/tvActorName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +28,21 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="Lorem"
+            android:layout_marginTop="8dp"
             android:textColor="@color/primary_text"
             android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvCharName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="Lorem"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp" />
+
     </LinearLayout>
 </FrameLayout>

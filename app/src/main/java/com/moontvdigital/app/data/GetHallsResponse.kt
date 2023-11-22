@@ -23,5 +23,11 @@ data class HallData(
 	val hallId: Int? = null,
 
 	@field:SerializedName("hall_name")
-	val hallName: String? = null
+	val hallName: String? = null,
+
+	@field:SerializedName("hall_timing")
+	val hallTiming: String? = null,
+
+	@field:SerializedName("hall_film_thumbnail")
+	val hallFilmThumbnail: String? = null
 )

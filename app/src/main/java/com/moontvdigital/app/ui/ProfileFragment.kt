@@ -12,8 +12,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.moontvdigital.app.R
+import com.moontvdigital.app.api.ApiService
+import com.moontvdigital.app.api.ServiceBuilder
+import com.moontvdigital.app.data.WalletBalanceResponse
 import com.moontvdigital.app.databinding.FragmentProfileBinding
 import com.moontvdigital.app.utilities.PreferenceManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfileFragment : Fragment() {
 
@@ -61,6 +67,31 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    var walletBalance = "0"
+    private fun getWalletBalanceApi() {
+        val service = ServiceBuilder.buildService(ApiService::class.java)
+        val walletBalCall = service.getWalletBalance(preferenceManager.userId)
+        walletBalCall.enqueue(object : Callback<WalletBalanceResponse> {
+            override fun onResponse(
+                call: Call<WalletBalanceResponse>,
+                response: Response<WalletBalanceResponse>
+            ) {
+                val walletBalanceResponse = response.body()
+                walletBalanceResponse?.let {balanceResponse ->
+                    if (balanceResponse.code.equals("200")) {
+                        val walletData = balanceResponse.walletData?.get(0)
+                        walletBalance = walletData?.walletBalance ?: ""
+                        binding.tvWalletBal.text = "\u20B9" + walletBalance
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<WalletBalanceResponse>, t: Throwable) {
+            }
+        })
+    }
+
+
     private fun showLogoutConfirmation() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setMessage("Leaving so soon!!!")
@@ -99,10 +130,10 @@ class ProfileFragment : Fragment() {
             binding.tvMobileNo.text = preferenceManager.mobileNo
 
             binding.settingsItemsViewGroup.visibility = View.VISIBLE
-            binding.btnLogin.visibility = View.GONE
+            binding.loginFrame.visibility = View.GONE
         } else {
             binding.settingsItemsViewGroup.visibility = View.GONE
-            binding.btnLogin.visibility = View.VISIBLE
+            binding.loginFrame.visibility = View.VISIBLE
         }
     }
 
@@ -110,6 +141,9 @@ class ProfileFragment : Fragment() {
         super.onResume()
         isLoggedIn = preferenceManager.userId != null
         updateUi()
+        if (isLoggedIn) {
+            getWalletBalanceApi()
+        }
     }
 
     override fun onDestroyView() {

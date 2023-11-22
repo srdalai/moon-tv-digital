@@ -145,7 +145,6 @@
                     android:includeFontPadding="false"
                     android:inputType="number"
                     android:maxLines="1"
-                    android:text="9556798434"
                     android:textColor="@color/primary_text" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

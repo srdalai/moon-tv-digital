@@ -5,6 +5,7 @@ import com.moontvdigital.app.data.BannerImageResponse
 import com.moontvdigital.app.data.DistListResponse
 import com.moontvdigital.app.data.CountryListResponse
 import com.moontvdigital.app.data.GetHallsResponse
+import com.moontvdigital.app.data.HomeContentResponse
 import com.moontvdigital.app.data.MovieDetailsResponse
 import com.moontvdigital.app.data.ShowTimesResponse
 import com.moontvdigital.app.data.StateListResponse
@@ -32,6 +33,15 @@ interface ApiService {
 
     @GET("GetHallList")
     fun getHallList(): Call<GetHallsResponse>
+
+    @GET("MoviesList")
+    fun getMoviesList(): Call<HomeContentResponse>
+
+    @GET("IncomeVideosList")
+    fun getUpcomingVideos(): Call<HomeContentResponse>
+
+    @GET("SongList")
+    fun getSongList(): Call<HomeContentResponse>
 
     @GET("GetShowTime")
     fun getShowTimes(

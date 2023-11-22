@@ -7,6 +7,7 @@ import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.palette.graphics.Palette
@@ -62,10 +63,14 @@ class HallDetailsActivity : AppCompatActivity() {
         binding = ActivityHallDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*supportActionBar?.let {
-            it.setTitle("")
+        setSupportActionBar(binding.materialToolbar)
+
+        supportActionBar?.let {
+            it.title = ""
             it.setDisplayHomeAsUpEnabled(true)
-        }*/
+            //it.setBackgroundDrawable(getDrawable(R.drawable.details_toolbar_bg))
+            it.setHomeAsUpIndicator(R.drawable.default_back_light)
+        }
 
         hallName = intent.getStringExtra("hall_name")!!
         hallId = intent.getIntExtra("hall_id", 0)
@@ -239,11 +244,21 @@ class HallDetailsActivity : AppCompatActivity() {
     private fun showTicketDialog(showTime: ShowTime) {
         /*val ticketStubFragment = TicketStubFragment(hallName, curShowDate, showTime, walletBalance)
         ticketStubFragment.show(supportFragmentManager, TicketStubFragment.TAG)*/
-        startActivity(Intent(this, MovieDetailsActivity::class.java))
+        startActivity(Intent(this, MovieDetailsActivity::class.java).apply {
+            putExtra("movie_id", showTime.filmId.toString())
+        })
 
         /*val builder = AlertDialog.Builder(this, R.style.TicketDialog)
         builder.setView(R.layout.fragment_ticket_stub)
         builder.create().show()*/
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            super.onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private inner class ShowTimeItemDecoration : RecyclerView.ItemDecoration() {
@@ -257,15 +272,15 @@ class HallDetailsActivity : AppCompatActivity() {
             if (parent.getChildAdapterPosition(view) == 0) {
                 outRect.set(
                     Util.dpToPx(parent.context, 32), 0,
-                    Util.dpToPx(parent.context, 8), 0)
+                    Util.dpToPx(parent.context, 2), 0)
             } else if (parent.getChildAdapterPosition(view) == parent.adapter!!.itemCount - 1) {
                 outRect.set(
-                    Util.dpToPx(parent.context, 8), 0,
+                    Util.dpToPx(parent.context, 2), 0,
                     Util.dpToPx(parent.context, 32), 0)
             } else {
                 outRect.set(
-                    Util.dpToPx(parent.context, 8), 0,
-                    Util.dpToPx(parent.context, 8), 0)
+                    Util.dpToPx(parent.context, 2), 0,
+                    Util.dpToPx(parent.context, 2), 0)
             }
         }
     }
