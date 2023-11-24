@@ -337,7 +337,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_semi_bold"
             android:includeFontPadding="false"
-            android:text="Cast"
+            android:text="Cast &amp; Crew"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/section_heading_size"
             app:layout_constraintStart_toStartOf="parent"

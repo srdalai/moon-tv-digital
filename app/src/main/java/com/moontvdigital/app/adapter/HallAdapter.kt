@@ -38,7 +38,7 @@ class HallAdapter(
                 .into(binding.ivHallImage)
 
             binding.tvHallName.text = hallData.hallName
-            val timingStr = "T: ${hallData.hallTiming}"
+            val timingStr = hallData.hallTiming
             binding.tvHallTiming.text = timingStr
 
             binding.parentLayout.setOnClickListener {

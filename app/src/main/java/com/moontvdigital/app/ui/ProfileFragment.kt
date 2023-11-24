@@ -42,7 +42,7 @@ class ProfileFragment : Fragment() {
 
         preferenceManager = PreferenceManager.getInstance(requireContext())
 
-        binding.btnLogin.setOnClickListener {
+        binding.settingsLogin.setOnClickListener {
             startActivity(Intent(requireContext(), AuthActivity::class.java))
         }
 
@@ -81,6 +81,7 @@ class ProfileFragment : Fragment() {
                     if (balanceResponse.code.equals("200")) {
                         val walletData = balanceResponse.walletData?.get(0)
                         walletBalance = walletData?.walletBalance ?: ""
+                        preferenceManager.walletBal = walletBalance
                         binding.tvWalletBal.text = "\u20B9" + walletBalance
                     }
                 }

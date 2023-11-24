@@ -15,5 +15,6 @@
     <color name="primary_red">#e80023</color>
     <color name="ticket_stub_primary_text">#f0ead3</color>
     <color name="cta_ripple_color">#deeaff</color>
+    <color name="settings_icon_tint">#616161</color>
 
 </resources>

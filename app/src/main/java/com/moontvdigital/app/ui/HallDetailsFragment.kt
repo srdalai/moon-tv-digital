@@ -22,6 +22,8 @@ import com.moontvdigital.app.data.ShowDate
 import com.moontvdigital.app.data.ShowTime
 import com.moontvdigital.app.data.ShowTimesResponse
 import com.moontvdigital.app.databinding.FragmentHallDetailsBinding
+import com.moontvdigital.app.ui.MovieDetailsActivity.Companion.INTENT_EXTRA_SHOW_DATE
+import com.moontvdigital.app.ui.MovieDetailsActivity.Companion.INTENT_EXTRA_SHOW_TIME
 import com.moontvdigital.app.utilities.Util
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,6 +42,7 @@ class HallDetailsFragment : BottomSheetDialogFragment() {
 
     private lateinit var curShowDate: ShowDate
     private lateinit var curShowCalDate: Date
+    private lateinit var curShowTime: ShowTime
     private lateinit var hallName: String
     private var hallId = 0
 
@@ -90,6 +93,7 @@ class HallDetailsFragment : BottomSheetDialogFragment() {
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         showTimeAdapter = ShowTimeAdapter(showTimeList, object : ShowTimeAdapter.ShowTimeListener {
             override fun onShowTimeClicked(showTime: ShowTime) {
+                curShowTime = showTime
                 navigateToMovieDetails(showTime)
             }
         })
@@ -140,6 +144,8 @@ class HallDetailsFragment : BottomSheetDialogFragment() {
     private fun navigateToMovieDetails(showTime: ShowTime) {
         startActivity(Intent(requireContext(), MovieDetailsActivity::class.java).apply {
             putExtra("movie_id", showTime.filmId.toString())
+            putExtra(INTENT_EXTRA_SHOW_DATE, Util.getGson().toJson(curShowDate))
+            putExtra(INTENT_EXTRA_SHOW_TIME, Util.getGson().toJson(curShowTime))
         })
     }
 

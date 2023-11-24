@@ -26,6 +26,7 @@ import com.moontvdigital.app.databinding.ActivityMovieDetailsBinding
 import com.moontvdigital.app.databinding.DialogCastDetailsBinding
 import com.moontvdigital.app.databinding.DialogMovieDescLayoutBinding
 import com.moontvdigital.app.utilities.PreferenceManager
+import com.moontvdigital.app.utilities.Util
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +36,8 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MovieDetailsActivity"
+        const val INTENT_EXTRA_SHOW_DATE = "Intent.Extra.Show.Date"
+        const val INTENT_EXTRA_SHOW_TIME = "Intent.Extra.Show.Time"
     }
 
     private lateinit var binding: ActivityMovieDetailsBinding
@@ -46,6 +49,8 @@ class MovieDetailsActivity : AppCompatActivity() {
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var movieId: String
     private var movieItem: MovieItem? = null
+    var showDate: ShowDate? = null
+    var showTime: ShowTime? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +58,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         movieId = intent.getStringExtra("movie_id")!!
+
+        val showDateStr = intent.getStringExtra(INTENT_EXTRA_SHOW_DATE)
+        showDate = Util.getGson().fromJson(showDateStr, ShowDate::class.java)
+
+        val showTimeStr = intent.getStringExtra(INTENT_EXTRA_SHOW_TIME)
+        showTime = Util.getGson().fromJson(showTimeStr, ShowTime::class.java)
 
         preferenceManager = PreferenceManager.getInstance(this)
 
@@ -163,9 +174,9 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun showTicketDialog() {
         val ticketStubFragment = TicketStubFragment(
-            "INOX",
-            ShowDate(Calendar.getInstance().time, 6, 11, 23, "MON"),
-            ShowTime(filmName = "Malyagiri", showStartTime = "03:25 PM", ticketRate = 200)
+            showTime?.hallName + " Digital Theater",
+            showDate!!,
+            showTime!!
         )
         ticketStubFragment.show(supportFragmentManager, TicketStubFragment.TAG)
     }
@@ -203,6 +214,4 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }

@@ -67,7 +67,7 @@ class AuthActivity : AppCompatActivity() {
 
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
-            it.setHomeAsUpIndicator(R.drawable.default_back_light)
+            it.setHomeAsUpIndicator(R.drawable.default_back_dark)
         }
 
         binding.tvLogin.paintFlags = binding.tvLogin.paintFlags or Paint.UNDERLINE_TEXT_FLAG
@@ -127,9 +127,10 @@ class AuthActivity : AppCompatActivity() {
 
         binding.tvCountry.requestFocus()
 
-        resetCountry()
-        resetState()
+        setDefaultCountry()
+        setDefaultState()
         resetDist()
+        binding.inputDist.visibility = View.VISIBLE
     }
 
     private fun validate(): Boolean {
@@ -289,7 +290,8 @@ class AuthActivity : AppCompatActivity() {
                 selectedCountryPos = pos
                 selectedCountryId = countryList[pos]?.countryId!!
                 if (selectedCountryId == Util.COUNTRY_ID_INDIA) {
-                    binding.inputState.visibility = View.VISIBLE
+                    setDefaultState()
+                    binding.inputDist.visibility = View.VISIBLE
                 } else {
                     binding.inputState.visibility = View.GONE
                     binding.inputDist.visibility = View.GONE
@@ -387,6 +389,31 @@ class AuthActivity : AppCompatActivity() {
                 selectedDistPos = pos
                 selectedDistId = distList[pos]?.districtId!!
             }
+    }
+
+    private fun setDefaultCountry() {
+        selectedCountryPos = 0
+        selectedCountryId = countryList[0]?.countryId.toString()
+        binding.tvCountry.setText(countryList[0]?.countryName ?: "", false)
+        binding.inputCountry.visibility = View.VISIBLE
+    }
+    private fun setDefaultState() {
+        selectedStatePos = 0
+        selectedStateId = stateList[0]?.stateId.toString()
+        binding.tvState.setText(stateList[0]?.stateName ?: "", false)
+        binding.inputState.visibility = View.VISIBLE
+    }
+    private fun setDefaultDist() {
+        selectedDistPos = 0
+        selectedDistId = distList[0]?.districtId.toString()
+        binding.tvDist.setText(distList[0]?.districtName ?: "", false)
+        binding.inputDist.visibility = View.VISIBLE
+    }
+
+    private fun defaultAll() {
+        setDefaultCountry()
+        setDefaultState()
+        setDefaultDist()
     }
 
     private fun resetCountry() {

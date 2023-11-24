@@ -27,9 +27,8 @@
                 android:fontFamily="@font/poppins_semi_bold"
                 android:includeFontPadding="false"
                 android:text="Bini Pattnaik Digital Theatre"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </FrameLayout>
 
@@ -122,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semi_bold"
             android:includeFontPadding="false"
             android:text="Pay Per Song"
@@ -152,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semi_bold"
             android:includeFontPadding="false"
             android:text="Income Video"

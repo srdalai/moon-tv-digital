@@ -18,6 +18,7 @@ class DateAdapter(private val dateList: List<ShowDate>, private val listener: Da
         val dateContainer: LinearLayout = itemView.findViewById(R.id.dateContainer)
         val tvDay: TextView = itemView.findViewById(R.id.tvDay)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
+        val tvMonth: TextView = itemView.findViewById(R.id.tvMonth)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
@@ -34,6 +35,7 @@ class DateAdapter(private val dateList: List<ShowDate>, private val listener: Da
         val showDate = dateList[position]
         holder.tvDate.text = showDate.date.toString()
         holder.tvDay.text = showDate.day
+        holder.tvMonth.text = theMonth(showDate.month)
 
         if (position == currentPos) {
             holder.dateContainer.isSelected = true
@@ -47,6 +49,23 @@ class DateAdapter(private val dateList: List<ShowDate>, private val listener: Da
             listener.onDateClicked(showDate)
         }
 
+    }
+    private val monthNames = arrayOf(
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    )
+    private fun theMonth(month: Int): String {
+        return monthNames[month]
     }
 
     interface DateClickedListener {

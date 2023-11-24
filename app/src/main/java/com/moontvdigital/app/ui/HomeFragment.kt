@@ -1,5 +1,6 @@
 package com.moontvdigital.app.ui
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -53,44 +54,6 @@ class HomeFragment : Fragment() {
 
     private var curBannerPos = 0
     private var bannerTimer: Timer? = null
-
-    private fun autoNextBanner() {
-        if (curBannerPos < bannerImages.size) {
-            curBannerPos++
-        } else {
-            curBannerPos = 0
-        }
-        updateBanner()
-    }
-    private fun nextBanner() {
-        if (curBannerPos < bannerImages.size) {
-            curBannerPos++
-            updateBanner()
-        }
-    }
-
-    private fun previousBanner() {
-        if (curBannerPos > 0) {
-            curBannerPos--
-            updateBanner()
-        }
-    }
-
-    private fun setBannerTimer() {
-        bannerTimer?.cancel()
-        bannerTimer = Timer()
-        bannerTimer?.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                autoNextBanner()
-            }
-        }, 2000, 2000)
-    }
-
-    private fun updateBanner() {
-        requireActivity().runOnUiThread {
-            binding.viewPager.setCurrentItem(curBannerPos)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -247,7 +210,9 @@ class HomeFragment : Fragment() {
         val adapter = HomeContentAdapter(homeContents, object :
             HomeContentAdapter.OnItemClickListener {
             override fun onItemClicked(homeContent: HomeContent) {
-                Toast.makeText(requireContext(), homeContent.filmName, Toast.LENGTH_SHORT).show()
+                startActivity(Intent(requireContext(), MovieDetailsActivity::class.java).apply {
+                    putExtra("movie_id", homeContent.filmId.toString())
+                })
             }
         })
         binding.moviesRecycler.layoutManager = layoutManager
@@ -288,7 +253,9 @@ class HomeFragment : Fragment() {
         val adapter = HomeContentAdapter(homeContents, object :
             HomeContentAdapter.OnItemClickListener {
             override fun onItemClicked(homeContent: HomeContent) {
-                Toast.makeText(requireContext(), homeContent.filmName, Toast.LENGTH_SHORT).show()
+                startActivity(Intent(requireContext(), MovieDetailsActivity::class.java).apply {
+                    putExtra("movie_id", homeContent.filmId.toString())
+                })
             }
         })
         binding.songsRecycler.layoutManager = layoutManager
@@ -329,7 +296,9 @@ class HomeFragment : Fragment() {
         val adapter = HomeContentAdapter(homeContents, object :
             HomeContentAdapter.OnItemClickListener {
             override fun onItemClicked(homeContent: HomeContent) {
-                Toast.makeText(requireContext(), homeContent.filmName, Toast.LENGTH_SHORT).show()
+                startActivity(Intent(requireContext(), MovieDetailsActivity::class.java).apply {
+                    putExtra("movie_id", homeContent.filmId.toString())
+                })
             }
         })
         binding.videosRecycler.layoutManager = layoutManager
@@ -338,6 +307,45 @@ class HomeFragment : Fragment() {
 
         binding.tvVideos.visibility = View.VISIBLE
         binding.videosRecycler.visibility = View.VISIBLE
+    }
+
+    private fun autoNextBanner() {
+        if (curBannerPos < bannerImages.size) {
+            curBannerPos++
+        } else {
+            curBannerPos = 0
+        }
+        updateBanner()
+    }
+
+    private fun nextBanner() {
+        if (curBannerPos < bannerImages.size) {
+            curBannerPos++
+            updateBanner()
+        }
+    }
+
+    private fun previousBanner() {
+        if (curBannerPos > 0) {
+            curBannerPos--
+            updateBanner()
+        }
+    }
+
+    private fun setBannerTimer() {
+        bannerTimer?.cancel()
+        bannerTimer = Timer()
+        bannerTimer?.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                autoNextBanner()
+            }
+        }, 2000, 2000)
+    }
+
+    private fun updateBanner() {
+        requireActivity().runOnUiThread {
+            binding.viewPager.setCurrentItem(curBannerPos)
+        }
     }
 
     override fun onResume() {

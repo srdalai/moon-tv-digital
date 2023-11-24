@@ -14,6 +14,7 @@ public class PreferenceManager {
     private final String USER_ID = "USER_ID";
     private final String USER_NAME = "USER_NAME";
     private final String MOBILE_NO = "MOBILE_NO";
+    private final String WALLET_BAL = "WALLET_BAL";
 
 
     private PreferenceManager(Context mContext) {
@@ -58,6 +59,14 @@ public class PreferenceManager {
 
     public void setMobileNo(String mobileNo) {
         mEditor.putString(MOBILE_NO, mobileNo).commit();
+    }
+
+    public String getWalletBal() {
+        return mSharedPreferences.getString(WALLET_BAL, "");
+    }
+
+    public void setWalletBal(String walletBal) {
+        mEditor.putString(WALLET_BAL, walletBal).commit();
     }
 
     public void clearUserPrefs() {

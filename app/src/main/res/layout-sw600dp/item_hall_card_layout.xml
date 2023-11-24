@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parentLayout"
-        android:layout_width="152dp"
+        android:layout_width="196dp"
         android:layout_height="wrap_content"
         android:clipToPadding="true">
 

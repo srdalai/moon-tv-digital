@@ -62,10 +62,12 @@
                 android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
                 android:paddingVertical="@dimen/settings_item_vertical_padding">
 
-                <View
+                <ImageView
                     android:layout_width="@dimen/settings_icon_size"
                     android:layout_height="@dimen/settings_icon_size"
-                    android:background="@drawable/profile_edit_profile_icon" />
+                    android:padding="@dimen/settings_icon_padding"
+                    app:tint="@color/settings_icon_tint"
+                    app:srcCompat="@drawable/settings_icon_person" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -81,8 +83,8 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical|end"
                     android:src="@drawable/chevron_right"
                     app:tint="@color/primary_text" />
@@ -97,10 +99,12 @@
                 android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
                 android:paddingVertical="@dimen/settings_item_vertical_padding">
 
-                <View
+                <ImageView
                     android:layout_width="@dimen/settings_icon_size"
                     android:layout_height="@dimen/settings_icon_size"
-                    android:background="@drawable/profile_change_pwd_icon" />
+                    android:padding="@dimen/settings_icon_padding"
+                    app:tint="@color/settings_icon_tint"
+                    app:srcCompat="@drawable/settings_icon_password" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -116,8 +120,8 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical|end"
                     android:src="@drawable/chevron_right"
                     app:tint="@color/primary_text" />
@@ -132,10 +136,12 @@
                 android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
                 android:paddingVertical="@dimen/settings_item_vertical_padding">
 
-                <View
+                <ImageView
                     android:layout_width="@dimen/settings_icon_size"
                     android:layout_height="@dimen/settings_icon_size"
-                    android:background="@drawable/profile_wallet_icon" />
+                    android:padding="@dimen/settings_icon_padding"
+                    app:tint="@color/settings_icon_tint"
+                    app:srcCompat="@drawable/settings_icon_wallet" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -164,8 +170,8 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical|end"
                     android:src="@drawable/chevron_right"
                     app:tint="@color/primary_text" />
@@ -180,10 +186,12 @@
                 android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
                 android:paddingVertical="@dimen/settings_item_vertical_padding">
 
-                <View
+                <ImageView
                     android:layout_width="@dimen/settings_icon_size"
                     android:layout_height="@dimen/settings_icon_size"
-                    android:background="@drawable/profile_payment_history_icon" />
+                    android:padding="@dimen/settings_icon_padding"
+                    app:tint="@color/settings_icon_tint"
+                    app:srcCompat="@drawable/settings_receipt_long" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -199,8 +207,8 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical|end"
                     android:src="@drawable/chevron_right"
                     app:tint="@color/primary_text" />
@@ -215,10 +223,12 @@
                 android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
                 android:paddingVertical="@dimen/settings_item_vertical_padding">
 
-                <View
+                <ImageView
                     android:layout_width="@dimen/settings_icon_size"
                     android:layout_height="@dimen/settings_icon_size"
-                    android:background="@drawable/profile_logout_icon" />
+                    android:padding="@dimen/settings_icon_padding"
+                    app:tint="@color/settings_icon_tint"
+                    app:srcCompat="@drawable/settings_icon_logout" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -234,8 +244,8 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical|end"
                     android:src="@drawable/chevron_right"
                     app:tint="@color/primary_text" />
@@ -253,23 +263,61 @@
             <FrameLayout
                 android:id="@+id/loginFrame"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:visibility="visible"
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:visibility="gone"
                     android:text="Login"/>
+                <LinearLayout
+                    android:id="@+id/settingsLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/settings_item_bg"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
+                    android:paddingVertical="@dimen/settings_item_vertical_padding">
 
+                    <ImageView
+                        android:layout_width="@dimen/settings_icon_size"
+                        android:layout_height="@dimen/settings_icon_size"
+                        android:padding="@dimen/settings_icon_padding"
+                        app:srcCompat="@drawable/settings_icon_login" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:includeFontPadding="false"
+                        android:text="Login"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center_vertical|end"
+                        android:src="@drawable/chevron_right"
+                        app:tint="@color/primary_text" />
+                </LinearLayout>
             </FrameLayout>
 
-            <View
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginVertical="4dp"
                 android:layout_marginHorizontal="16dp"
-                android:background="@color/lb_grey" />
+                android:background="@color/lb_grey" />-->
 
             <LinearLayout
                 android:id="@+id/settingsContactUs"
@@ -281,10 +329,11 @@
                 android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
                 android:paddingVertical="@dimen/settings_item_vertical_padding">
 
-                <View
+                <ImageView
                     android:layout_width="@dimen/settings_icon_size"
                     android:layout_height="@dimen/settings_icon_size"
-                    android:background="@drawable/profile_contact_icon" />
+                    android:padding="@dimen/settings_icon_padding"
+                    app:srcCompat="@drawable/settings_icon_contact" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -300,8 +349,45 @@
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:src="@drawable/chevron_right"
+                    app:tint="@color/primary_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/settingsPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@drawable/settings_item_bg"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/settings_item_horizontal_padding"
+                android:paddingVertical="@dimen/settings_item_vertical_padding">
+
+                <ImageView
+                    android:layout_width="@dimen/settings_icon_size"
+                    android:layout_height="@dimen/settings_icon_size"
+                    android:padding="@dimen/settings_icon_padding"
+                    app:srcCompat="@drawable/settings_icon_policy" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:includeFontPadding="false"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical|end"
                     android:src="@drawable/chevron_right"
                     app:tint="@color/primary_text" />
